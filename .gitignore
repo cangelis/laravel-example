@@ -1,0 +1,6 @@
+nbproject
+vendor
+.DS_Store
+logs
+composer.lock
+ide_helper.php
