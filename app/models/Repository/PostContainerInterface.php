@@ -1,7 +1,8 @@
 <?php
 
-namespace LaravelTest\Model\Repository\Container;
+namespace LaravelTest\Model\Repository;
 
 interface PostContainerInterface {
-    
+
+    public function setDataSource($posts);
 }

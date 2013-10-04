@@ -4,7 +4,7 @@ namespace LaravelTest\Model\Repository;
 
 use Illuminate\Database\Eloquent\Collection;
 use LaravelTest\Model\Iterable;
-use LaravelTest\Model\Repository\Container\PostContainerInterface;
+use LaravelTest\Model\Repository\PostContainerInterface;
 use LaravelTest\Model\Repository\Post;
 
 class PostContainer implements Iterable, PostContainerInterface {
@@ -19,6 +19,10 @@ class PostContainer implements Iterable, PostContainerInterface {
         foreach ($this->posts as $post) {
             $callback(new Post($post));
         }
+    }
+
+    public function setDataSource($posts) {
+        $this->posts = $posts;
     }
 
 }

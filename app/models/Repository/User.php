@@ -3,6 +3,7 @@
 namespace LaravelTest\Model\Repository;
 
 use LaravelTest\Model\Eloquent\User as EloquentUser;
+use LaravelTest\Model\Repository\PostContainerInterface;
 use LaravelTest\Model\Repository\PostContainer;
 
 class User implements UserInterface {
@@ -15,12 +16,9 @@ class User implements UserInterface {
      */
     private $posts;
 
-    public function __construct(EloquentUser $user) {
+    public function __construct(EloquentUser $user, PostContainerInterface $posts) {
         $this->user = $user;
-    }
-
-    public function initWithInstance(EloquentUser $user) {
-        $this->user = $user;
+        $this->posts = $posts;
     }
 
     public function init($id) {
@@ -76,8 +74,7 @@ class User implements UserInterface {
     }
 
     public function getPosts() {
-        if (is_null($this->posts))
-            $this->posts = new PostContainer($this->user->posts);
+        $this->posts->setDataSource($this->user->posts);
         return $this->posts;
     }
 

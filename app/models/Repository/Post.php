@@ -27,15 +27,6 @@ class Post implements PostInterface {
         return $this;
     }
 
-    public function initWithUser($id) {
-        $post = $this->post->with('user')->where('id', '=', $id)->first();
-        if ($post == null)
-            return false;
-        $this->post = $post;
-        $this->user = new User($this->post->user);
-        return $this;
-    }
-
     public function save() {
         if (!is_null($this->user))
             $this->post->user_id = $this->user->getId();
@@ -70,7 +61,7 @@ class Post implements PostInterface {
         return $this->user;
     }
 
-    public function setUser(User $user) {
+    public function setUser(UserInterface $user) {
         $this->user = $user;
     }
 

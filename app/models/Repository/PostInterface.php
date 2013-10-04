@@ -6,8 +6,6 @@ interface PostInterface {
 
     public function init($id);
 
-    public function initWithUser($id);
-
     public function save();
 
     public function getId();
@@ -24,7 +22,7 @@ interface PostInterface {
 
     public function getUser();
 
-    public function setUser(User $user);
+    public function setUser(UserInterface $user);
 }
 
 ?>

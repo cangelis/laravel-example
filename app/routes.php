@@ -12,6 +12,7 @@
  */
 App::bind('LaravelTest\Model\Repository\UserInterface', 'LaravelTest\Model\Repository\User');
 App::bind('LaravelTest\Model\Repository\PostInterface', 'LaravelTest\Model\Repository\Post');
+App::bind('LaravelTest\Model\Repository\PostContainerInterface', 'LaravelTest\Model\Repository\PostContainer');
 App::bind('LaravelTest\Model\AuthInterface', 'LaravelTest\Model\Auth');
 
 Route::controller("/user", "\LaravelTest\Controller\User");

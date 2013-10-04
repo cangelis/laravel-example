@@ -70,5 +70,10 @@ class Post extends \BaseController {
         $posts = $this->auth->getUser()->getPosts();
         return \View::make('post_list')->with('posts', $posts);
     }
+    
+    public function getDelete($id) {
+        $this->beforeFilter("Auth");
+        
+    }
 
 }
