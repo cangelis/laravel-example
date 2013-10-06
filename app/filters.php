@@ -33,6 +33,7 @@ App::after(function($request, $response) {
  */
 
 Route::filter('Auth', 'AuthFilter');
+Route::filter('NoAuth', 'NoAuthFilter');
 
 
 

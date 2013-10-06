@@ -23,7 +23,7 @@ class Post extends \BaseController {
     public function postNew() {
 	$validator = $this->validateInput();
 	if ($validator->fails())
-	    return \Redirect::back()->withErrors($validator);
+	    return \Redirect::to('post/new')->withErrors($validator);
 	$this->post->setContent(\Input::get("content"));
 	$this->post->setTitle(\Input::get('title'));
 	$this->post->setUser($this->auth->getUser());
@@ -33,8 +33,8 @@ class Post extends \BaseController {
 
     public function getEdit($id) {
 	$post = $this->post->init($id);
-	if ($post == false) {
-	    return App::abort(404, 'Page not found');
+	if (($post == null) || (!is_numeric($id))) {
+	    return \App::abort(404, 'Page not found');
 	}
 	return \View::make('post_edit')->with('post', $post);
     }
@@ -52,10 +52,12 @@ class Post extends \BaseController {
     }
 
     public function postEdit($id) {
-	$this->post->init($id);
+	$post = $this->post->init($id);
+	if (($post == null) || (!is_numeric($id)))
+	    return \App::abort(404);
 	$validator = $this->validateInput();
 	if ($validator->fails())
-	    return \Redirect::back()->withErrors($validator);
+	    return \Redirect::to('post/edit/' . $id)->withErrors($validator);
 	$this->post->setContent(\Input::get("content"));
 	$this->post->setTitle(\Input::get('title'));
 	$this->post->save();
@@ -71,10 +73,10 @@ class Post extends \BaseController {
 	$this->post->init($id);
 	if ($this->post->getUser()->getId() == $this->auth->getUser()->getId()) {
 	    $this->post->delete();
-	    return \Redirect::back();
+	    return \Redirect::to('post/list');
 	}
 	else
-	    return App::abort(404, 'Page not found');
+	    return \App::abort(404, 'Page not found');
     }
 
 }

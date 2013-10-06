@@ -7,7 +7,7 @@ use LaravelTest\Model\Iterable;
 use LaravelTest\Model\Repository\PostContainerInterface;
 use LaravelTest\Model\Repository\Post;
 
-class PostContainer implements Iterable, PostContainerInterface {
+class PostContainer implements PostContainerInterface {
 
     private $posts;
 

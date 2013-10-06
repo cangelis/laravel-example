@@ -24,7 +24,7 @@ class Auth extends \BaseController {
         if ($this->auth->login(\Input::get('email'), \Input::get('password'))) {
             return \Redirect::to("/");
         }
-        return \Redirect::back()->with('login', false);
+        return \Redirect::to('auth/login')->with('login', false);
     }
 
     public function getLogout() {
