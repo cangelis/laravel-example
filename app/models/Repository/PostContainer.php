@@ -11,18 +11,16 @@ class PostContainer implements Iterable, PostContainerInterface {
 
     private $posts;
 
-    public function __construct(Collection $posts) {
-        $this->posts = $posts;
-    }
-
     public function iterate($callback) {
-        foreach ($this->posts as $post) {
-            $callback(new Post($post));
-        }
+	foreach ($this->posts as $post) {
+	    $p = new Post();
+	    $p->setDataSource($post);
+	    $callback($p);
+	}
     }
 
-    public function setDataSource($posts) {
-        $this->posts = $posts;
+    public function setDataSource(Collection $posts) {
+	$this->posts = $posts;
     }
 
 }

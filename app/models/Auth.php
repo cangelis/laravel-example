@@ -13,7 +13,7 @@ class Auth implements AuthInterface {
     private $user;
 
     public function __construct(UserInterface $user) {
-        $this->user = $user;
+	$this->user = $user;
     }
 
     /**
@@ -23,19 +23,14 @@ class Auth implements AuthInterface {
      * @return boolean
      */
     public function login($email, $password) {
-        $user = $this->user->initByEmail($email);
-        if ($user == false)
-            return false;
-        if (\Hash::check($password, $this->user->getPassword())) {
-            \Session::put("user", $this->user);
-            return true;
-        }
-        return false;
-    }
-
-    public function updateUser(UserInterface $user) {
-        $this->user = $user;
-        \Session::put($user);
+	$user = $this->user->initByEmail($email);
+	if ($user == false)
+	    return false;
+	if (\Hash::check($password, $this->user->getPassword())) {
+	    \Session::put("user_id", $this->user->getId());
+	    return true;
+	}
+	return false;
     }
 
     /**
@@ -43,7 +38,7 @@ class Auth implements AuthInterface {
      * @return boolean
      */
     public function isLoggedIn() {
-        return \Session::has('user');
+	return \Session::has('user_id');
     }
 
     /**
@@ -51,11 +46,13 @@ class Auth implements AuthInterface {
      * @return UserInterface
      */
     public function getUser() {
-        return \Session::get('user');
+	$user = new \LaravelTest\Model\Repository\User();
+	$user->init(\Session::get('user_id'));
+	return $user;
     }
 
     public function logout() {
-        \Session::forget("user");
+	\Session::forget("user_id");
     }
 
 }

@@ -4,7 +4,11 @@ namespace LaravelTest\Model\Repository;
 
 interface PostInterface {
 
+    public function __construct();
+
     public function init($id);
+
+    public function delete();
 
     public function save();
 

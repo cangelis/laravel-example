@@ -4,6 +4,8 @@ namespace LaravelTest\Model\Repository;
 
 interface UserInterface {
 
+    public function __construct();
+
     public function init($id);
 
     public function initByEmail($email);
@@ -26,6 +28,9 @@ interface UserInterface {
 
     public function setPassword($password);
 
+    /**
+     * @return \LaravelTest\Model\Repository\PostContainerInterface 
+     */
     public function getPosts();
 }
 

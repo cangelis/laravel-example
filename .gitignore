@@ -4,3 +4,4 @@ vendor
 logs
 composer.lock
 ide_helper.php
+app/config/database.php
