@@ -6,7 +6,7 @@ use LaravelTest\Model\Repository\PostContainer;
 
 class User implements UserInterface {
 
-    private $user, $id, $name, $email, $password;
+    private $user;
 
     /**
      *
@@ -21,11 +21,15 @@ class User implements UserInterface {
     public function setDataSource(\LaravelTest\Model\Eloquent\User $user) {
 	$this->user = $user;
     }
+    
+    public function delete() {
+        return $this->user->delete();
+    }
 
     public function init($id) {
 	$user = $this->user->find($id);
 	if ($user == null)
-	    return false;
+	    return null;
 	$this->user = $user;
 	return $this;
     }
@@ -33,7 +37,7 @@ class User implements UserInterface {
     public function initByEmail($email) {
 	$user = $this->user->where('email', '=', $email)->first();
 	if ($user == null)
-	    return false;
+	    return null;
 	$this->user = $user;
 	return $this;
     }

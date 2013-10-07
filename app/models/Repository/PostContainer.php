@@ -3,9 +3,8 @@
 namespace LaravelTest\Model\Repository;
 
 use Illuminate\Database\Eloquent\Collection;
-use LaravelTest\Model\Iterable;
-use LaravelTest\Model\Repository\PostContainerInterface;
 use LaravelTest\Model\Repository\Post;
+use LaravelTest\Model\Repository\PostContainerInterface;
 
 class PostContainer implements PostContainerInterface {
 

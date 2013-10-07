@@ -6,7 +6,7 @@ use LaravelTest\Model\Repository\User;
 
 class Post implements PostInterface {
 
-    private $post, $id, $title, $content;
+    private $post;
 
     /**
      *
@@ -25,7 +25,7 @@ class Post implements PostInterface {
     public function init($id) {
 	$post = $this->post->find($id);
 	if ($post == null)
-	    return false;
+	    return null;
 	$this->post = $post;
 	return $this;
     }
