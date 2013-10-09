@@ -1,6 +1,6 @@
 @extends('base')
 @section('content')
 <div>
-    Başarılı :)
+    Success! :)
 </div>
 @stop

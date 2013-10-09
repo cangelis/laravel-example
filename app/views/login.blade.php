@@ -11,7 +11,7 @@
         <input type="password" name="password">
     </div>
     <div>
-        <input type="submit" value="Login Ol! :)">
+        <input type="submit" value="Login!">
     </div>
     <div>
         <a href="/user/register">Register</a>
