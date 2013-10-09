@@ -46,9 +46,8 @@ class Auth implements AuthInterface {
      * @return UserInterface
      */
     public function getUser() {
-	$user = new \LaravelTest\Model\Repository\User();
-	$user->init(\Session::get('user_id'));
-	return $user;
+	$this->user->init(\Session::get('user_id'));
+	return $this->user;
     }
 
     public function logout() {
